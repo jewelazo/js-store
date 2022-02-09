@@ -1,0 +1,85 @@
+
+.btn-search {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+.btn-search:active{
+    transform: scale(0.9);
+}
+.filter{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+.card{
+    position: relative;
+}
+.card-body{
+    padding: 0;
+}
+.card-body div span{
+    display: block;
+}
+.card-body div img{
+    width: 30px;
+}
+.cards-container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+}
+.select-category{
+    padding: 4px 12px;
+    background: #FFFFFF;
+    border: 1px solid #BDBDBD;
+    box-sizing:     border-box;
+    border-radius: 8px;
+    
+}
+option:first-child{
+    color: #BDBDBD;
+}
+option{
+    color: black;
+}
+.js-checkbox{
+    display: flex;
+    align-items: center ;
+    gap: 8px;
+}
+.byPrice{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+.tachado{
+    text-decoration: line-through;
+}
+.dscto{
+    background: red;
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;
+    display: flex; /* or inline-flex */
+    align-items: center; 
+    justify-content: center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+.precio-dscto{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
