@@ -7,11 +7,17 @@ const STORE = (function (){
     function getAllProducts(){
         return [...products]
     }
+    function orderByPrice(){
+        products.sort((a,b) => b.price - a.price)
+    }
 
     return {
         setProducts,
         getAllProducts,
+        orderByPrice,
         categorySelected:null,
+        byPrice:false,
+        inputText:"",
     }
 
 

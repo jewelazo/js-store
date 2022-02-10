@@ -5,29 +5,64 @@ import STORE from "../store.js"
 const Main=(()=>{
     async function onHandleSearch(e){
         e.preventDefault()
+        STORE.categorySelected=null
+        STORE.byPrice=false
         const { input } = e.target
         const searchProducts=  await ProductsFetcher.search(input.value)
         STORE.setProducts(searchProducts)
+        STORE.inputText=input.value
         DOMHandler.render(Main)
     }
 
     function onHandleCategory(e){
-        let products=JSON.parse(sessionStorage.getItem("product"))
-        STORE.setProducts(products)
-        const category=e.target.value
-        if (category!=='all'){
-            STORE.categorySelected=category
-            let productsByCategory=STORE.getAllProducts().filter( product => product.category.name===category)
-            STORE.setProducts(productsByCategory)
-        }
+        const category=e.target.closest(".select-category")
+        if (category){
+            let products=JSON.parse(sessionStorage.getItem("product"))
+            STORE.byPrice=false
+            STORE.inputText=""
+            STORE.categorySelected=category.value
+            STORE.setProducts(products)
+            if (category.value!=='all'){
+                let productsByCategory=STORE.getAllProducts().filter( product => product.category.name===category.value)
+                STORE.setProducts(productsByCategory)
+            }
        
-        DOMHandler.render(Main)
+            DOMHandler.render(Main)
 
+        }
+    }
+
+    function onHandleOrderPrice(e){
+        const checkPrice= e.target.closest('.js-price')
+        if (checkPrice){
+            if (checkPrice.checked){
+                STORE.byPrice=true
+                STORE.orderByPrice()
+            }else if (!checkPrice.checked){
+                STORE.byPrice=false
+                if (STORE.categorySelected){
+                    const products=JSON.parse(sessionStorage.getItem("product"))
+                    const productByCategory=products.filter(product => product.category.name===STORE.categorySelected)
+                    STORE.setProducts(productByCategory)
+                }
+                if (STORE.inputText){
+                    (async () =>{
+                        let newProducts = await ProductsFetcher.search(STORE.inputText)
+                        STORE.setProducts(newProducts)
+                        DOMHandler.render(Main)
+                        return;
+                    
+                    })()
+                }
+            }
+            DOMHandler.render(Main)
+        
+        }
+        
     }
     return {
         render: function (){
             let products=STORE.getAllProducts()
-            console.log(products)
             let listProducts=products.map( product =>
                 `<div class="card text-center" style="width: 18rem;">
                     ${product.discount ? `<div class="dscto">-${product.discount}%</div>` : ""}
@@ -71,7 +106,7 @@ const Main=(()=>{
                             <label>Ordenar por:</label>
                         </div>
                         <div class="byPrice">
-                            <input class="js-price" type="checkbox">
+                            <input class="js-price" ${STORE.byPrice ? "checked": ""} type="checkbox">
                             <span>Precio</span>
                         </div>
                     </div> 
@@ -83,12 +118,13 @@ const Main=(()=>{
         },
         initEventListeners: function(){
             const form= document.querySelector(".search-product")
-            const select=document.querySelector(".select-category")
+            const filter=document.querySelector(".filter")
             if (form){
                 document.addEventListener('submit',onHandleSearch)
             }
-            if (select){
+            if (filter){
                 document.addEventListener('change',onHandleCategory)
+                document.addEventListener('click',onHandleOrderPrice)
             }
         }
         
