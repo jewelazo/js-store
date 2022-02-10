@@ -18,6 +18,8 @@ const STORE = (function (){
         categorySelected:null,
         byPrice:false,
         inputText:"",
+        page:1,
+        maxPage:null,
     }
 
 

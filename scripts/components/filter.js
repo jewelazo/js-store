@@ -8,6 +8,7 @@ const Filter=function(){
         const category=e.target.closest(".select-category")
         if (category){
             let products=JSON.parse(sessionStorage.getItem("product"))
+            STORE.page=1
             STORE.byPrice=false
             STORE.inputText=""
             STORE.categorySelected=category.value

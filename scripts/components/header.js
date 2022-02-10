@@ -7,6 +7,7 @@ import STORE from "../store.js"
 const Header= function(){
     async function onHandleSearch(e){
         e.preventDefault()
+        STORE.page=1
         STORE.categorySelected=null
         STORE.byPrice=false
         const { input } = e.target
@@ -16,7 +17,7 @@ const Header= function(){
         DOMHandler.render(Main)
     }
     function onhandleStart(e){
-    
+        STORE.page=1
         let products=JSON.parse(sessionStorage.getItem('product'))
         STORE.setProducts(products)
         STORE.inputText=""
