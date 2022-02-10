@@ -1,5 +1,6 @@
 import Filter from "../components/filter.js"
 import Header from "../components/header.js"
+import { newPrice } from "../helpers/price_dscto.js"
 import STORE from "../store.js"
 
 const Main=(()=>{
@@ -19,7 +20,7 @@ const Main=(()=>{
                         <div>
                             <div class="precio-dscto">
                                 <span class=${product.discount ? "tachado":""}>$${product.price}</span>
-                                ${product.discount ? `<span>$${(product.price*(100-product.discount)/100).toFixed(1)}</span>` : ""}
+                                ${product.discount ? `<span>$${newPrice(product.price,product.discount)}</span>` : ""}
                             </div>
                             <img src="../assets/icons/car.svg" alt="">
                         </div>
