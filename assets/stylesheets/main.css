@@ -96,3 +96,31 @@ option{
     background: url('//upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Phi_fenomeni.gif/50px-Phi_fenomeni.gif') 
                 50% 50% no-repeat rgb(249,249,249);
 }
+.pagination{
+    margin-top: 20px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+}
+.next,.prev{
+    
+    color:#000;
+    border:1px solid #000;
+    font-size:15px;
+    padding:7px 15px;
+    cursor: pointer;
+}
+div.next.disabled,div.prev.disabled{
+	border-color: gray;
+	color:gray;
+	pointer-events: none;
+}
+
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}
