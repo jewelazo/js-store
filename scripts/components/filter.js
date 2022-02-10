@@ -43,6 +43,10 @@ const Filter=function(){
                     
                     })()
                 }
+                if (!STORE.inputText && !STORE.categorySelected ){
+                    let products=JSON.parse(sessionStorage.getItem('product'))
+                    STORE.setProducts(products)
+                }
             }
             DOMHandler.render(Main)
         
@@ -75,8 +79,8 @@ const Filter=function(){
         addEventListener: function(){
             const filter=document.querySelector(".filter")
             if (filter){
-                document.addEventListener('change',onHandleCategory)
-                document.addEventListener('click',onHandleOrderPrice)
+                filter.addEventListener('change',onHandleCategory)
+                filter.addEventListener('click',onHandleOrderPrice)
             }
         }
     }

@@ -3,6 +3,7 @@ import Main from "../pages/home.js"
 import { ProductsFetcher } from "../services/products_fetcher.js"
 import STORE from "../store.js"
 
+
 const Header= function(){
     async function onHandleSearch(e){
         e.preventDefault()
@@ -15,15 +16,14 @@ const Header= function(){
         DOMHandler.render(Main)
     }
     function onhandleStart(e){
-        let logo=e.target.closest(".logo-store")
-        if (logo){
-            let products=JSON.parse(sessionStorage.getItem('product'))
-            STORE.setProducts(products)
-            STORE.inputText=""
-            STORE.categorySelected=null
-            STORE.byPrice=false
-            DOMHandler.render(Main)
-        }
+    
+        let products=JSON.parse(sessionStorage.getItem('product'))
+        STORE.setProducts(products)
+        STORE.inputText=""
+        STORE.categorySelected=null
+        STORE.byPrice=false
+        DOMHandler.render(Main)
+        
     }
     return {
         toString: function(){
@@ -45,10 +45,10 @@ const Header= function(){
             const form= document.querySelector(".search-product")
             const logo=document.querySelector(".logo-store")
             if (form){
-                document.addEventListener('submit',onHandleSearch)
+                form.addEventListener('submit',onHandleSearch)
             }
             if (logo){
-                document.addEventListener('click',onhandleStart)
+                logo.addEventListener('click',onhandleStart)
             }
         }
     }
