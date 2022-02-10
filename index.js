@@ -4,6 +4,8 @@ import Main from "./scripts/pages/home.js"
 import { ProductsFetcher } from "./scripts/services/products_fetcher.js"
 import STORE from "./scripts/store.js";
 
+// Funcion IIFE que verifica la presencia de una key='product en sessionStorage', si no existe,
+//hace la peticion a la api,para luego guardarlo y tambien en el STORE
 (async () => {
     if (!sessionStorage.getItem("product")){
         DOMHandler.render(Loader)

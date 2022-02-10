@@ -1,3 +1,4 @@
+// Funcion IIFE que retorna funciones y atributos para la gestion de la data proveida por la api.
 const STORE = (function (){
     let products=[]
 
