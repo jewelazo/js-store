@@ -57,8 +57,19 @@ const Main=(()=>{
             }
             DOMHandler.render(Main)
         
+        }  
+    }
+
+    function onhandleStart(e){
+        let logo=e.target.closest(".logo-store")
+        if (logo){
+            let products=JSON.parse(sessionStorage.getItem('product'))
+            STORE.setProducts(products)
+            STORE.inputText=""
+            STORE.categorySelected=null
+            STORE.byPrice=false
+            DOMHandler.render(Main)
         }
-        
     }
     return {
         render: function (){
@@ -82,7 +93,7 @@ const Main=(()=>{
             return `
                 <nav class="navbar navbar-light bg-info">
                     <div class="container">
-                    <img src="../assets/images/logo.png" alt="">
+                    <img class="logo-store"src="../assets/images/logo.png" alt="">
                     <form class="search-product">
                         <div class="d-flex">
                             <input class="form-control me-2" name="input" type="search" placeholder="Encuentra tu producto" aria-label="Search">
@@ -119,12 +130,16 @@ const Main=(()=>{
         initEventListeners: function(){
             const form= document.querySelector(".search-product")
             const filter=document.querySelector(".filter")
+            const logo=document.querySelector(".logo-store")
             if (form){
                 document.addEventListener('submit',onHandleSearch)
             }
             if (filter){
                 document.addEventListener('change',onHandleCategory)
                 document.addEventListener('click',onHandleOrderPrice)
+            }
+            if (logo){
+                document.addEventListener('click',onhandleStart)
             }
         }
         

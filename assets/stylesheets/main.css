@@ -83,6 +83,9 @@ option{
     align-items: center;
     justify-content: center;
 }
+.logo-store{
+    cursor: pointer;
+}
 .loader{
     position: fixed;
     left: 0px;
