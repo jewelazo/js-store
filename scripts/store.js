@@ -11,6 +11,7 @@ const STORE = (function (){
     return {
         setProducts,
         getAllProducts,
+        categorySelected:null,
     }
 
 

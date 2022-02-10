@@ -10,6 +10,20 @@ const Main=(()=>{
         STORE.setProducts(searchProducts)
         DOMHandler.render(Main)
     }
+
+    function onHandleCategory(e){
+        let products=JSON.parse(sessionStorage.getItem("product"))
+        STORE.setProducts(products)
+        const category=e.target.value
+        if (category!=='all'){
+            STORE.categorySelected=category
+            let productsByCategory=STORE.getAllProducts().filter( product => product.category.name===category)
+            STORE.setProducts(productsByCategory)
+        }
+       
+        DOMHandler.render(Main)
+
+    }
     return {
         render: function (){
             let products=STORE.getAllProducts()
@@ -43,11 +57,14 @@ const Main=(()=>{
                 </div>
                 </nav>
                 <div class="filter">
-                    <select class="select-category" aria-label=".form-select-sm example">
-                        <option selected>Compra por Categoría</option>
-                        <option value="1">Bebida</option>
-                        <option value="2">Pisco</option>
-                        <option value="3">Snack</option>
+                    <select class="select-category" name="category" aria-label=".form-select-sm example">
+                        <option value="all" >Compra por categoría </option>
+                        <option value="bebida energetica" ${STORE.categorySelected==="bebida energetica" ? "selected" : ""}>bebida energetica</option>
+                        <option value="pisco" ${STORE.categorySelected==="pisco" ? "selected" : ""}>pisco</option>
+                        <option value="ron" ${STORE.categorySelected==="ron" ? "selected" : ""}>ron</option>
+                        <option value="bebida" ${STORE.categorySelected==="bebida" ? "selected" : ""}>bebida</option>
+                        <option value="snack" ${STORE.categorySelected==="snack" ? "selected" : ""}>snack</option>
+                        <option value="cerveza" ${STORE.categorySelected==="cerveza" ? "selected" : ""}>cerveza</option>
                     </select>
                     <div class="js-checkbox">
                         <div>
@@ -66,8 +83,12 @@ const Main=(()=>{
         },
         initEventListeners: function(){
             const form= document.querySelector(".search-product")
+            const select=document.querySelector(".select-category")
             if (form){
                 document.addEventListener('submit',onHandleSearch)
+            }
+            if (select){
+                document.addEventListener('change',onHandleCategory)
             }
         }
         
