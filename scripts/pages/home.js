@@ -60,7 +60,7 @@ const Main=(()=>{
                     </div> 
                 </div>
                 <div class="cards-container">
-                ${listProducts.join("")}
+                ${listProducts.length ? listProducts.join(""): "No se encontraron productos"}
                 </div>
                 `
         },
