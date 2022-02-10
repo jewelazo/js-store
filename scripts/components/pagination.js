@@ -1,22 +1,27 @@
 import STORE from "../store.js"
 
+// Componente Pagination que renderiza el html de la paginacion y gestiona las funciones-eventListeners para
+// mostrar/ocultar las cards,navegar por la paginas y verificar cuando ya no hay cards que mostrar.
 const Pagination= function(){
+
+    // Funcion que gestiona las paginaciones
     function onHandlePagination(e){
         let btnNext=e.target.closest(".next")
         if (btnNext){
-            STORE.page +=1
+            STORE.page += 1
             checkPaginate()
             showItems()
         }
         let btnPrev=e.target.closest(".prev")
         if (btnPrev){
-            STORE.page -=1
+            STORE.page -= 1
             checkPaginate()
             showItems()
         }
 
     }
-    
+
+    // Funcion que muestra/oculta los productos dependiendo de la pagina que se encuentre.
     function showItems(){
         const galleryItems=document.querySelector(".cards-container").children;
         const maxItem=6;
@@ -38,6 +43,8 @@ const Pagination= function(){
        }
        show()
     }
+
+    // Funcion que verifica si ya no hay productos que mostrar para poder desactivar los botones siguiente/anterior.
     function checkPaginate(){
         if(STORE.page===STORE.maxPage || STORE.getAllProducts().length===0){
             document.querySelector(".next").classList.add("disabled");

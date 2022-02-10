@@ -3,8 +3,11 @@ import Main from "../pages/home.js"
 import { ProductsFetcher } from "../services/products_fetcher.js"
 import STORE from "../store.js"
 
-
+// Componente Header que renderiza el html del header(logo y buscador) y gestiona las funciones-eventListeners para
+// reiniciar la aplicación y hacer peticiones a la API en relacion al texto ingresado por el usuario.
 const Header= function(){
+    // Funcion asincrona que realiza peticiones a la api con el endpoint /products/search/?q=texto,
+    // la API ya esta protegida de SQL injection.
     async function onHandleSearch(e){
         e.preventDefault()
         STORE.page=1
@@ -16,6 +19,8 @@ const Header= function(){
         STORE.inputText=input.value
         DOMHandler.render(Main)
     }
+
+    // Funcion para reiniciar la aplicacion
     function onhandleStart(e){
         STORE.page=1
         let products=JSON.parse(sessionStorage.getItem('product'))

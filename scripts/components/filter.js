@@ -3,7 +3,10 @@ import Main from "../pages/home.js"
 import { ProductsFetcher } from "../services/products_fetcher.js"
 import STORE from "../store.js"
 
+// Componente Filter que renderiza el html de la paginacion y gestiona las funciones-eventListeners para
+// mostrar los productos en funcion de la categoria seleccionada asi como tambien ordenar los productos por su precio en forma descendente.
 const Filter=function(){
+    // Funcion para filtrar por categoria los productos
     function onHandleCategory(e){
         const category=e.target.closest(".select-category")
         if (category){
@@ -22,6 +25,7 @@ const Filter=function(){
 
         }
     }
+    // Funcion para order los productos por su precio y cuando es desactivado, regresar a su estado anterior
     function onHandleOrderPrice(e){
         const checkPrice= e.target.closest('.js-price')
         if (checkPrice){

@@ -3,7 +3,7 @@ import Header from "../components/header.js"
 import Pagination from "../components/pagination.js"
 import { newPrice } from "../helpers/price_dscto.js"
 import STORE from "../store.js"
-
+// Function IIFE que renderiza y activa los eventos de todos los componentes,Header,Filter y Pagination
 const Main=(()=>{
     let header = Header()
     let filter = Filter()
@@ -36,6 +36,7 @@ const Main=(()=>{
                 ${pagination}
                 `
         },
+        // Funcion que activa los eventos de los componentes.
         initEventListeners: function(){
 
             header.addEventListeners()
