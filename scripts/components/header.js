@@ -2,6 +2,7 @@ import DOMHandler from "../../dom_handler.js"
 import Main from "../pages/home.js"
 import { ProductsFetcher } from "../services/products_fetcher.js"
 import STORE from "../store.js"
+import { Loader } from "./loader.js"
 
 // Componente Header que renderiza el html del header(logo y buscador) y gestiona las funciones-eventListeners para
 // reiniciar la aplicación y hacer peticiones a la API en relacion al texto ingresado por el usuario.
@@ -14,6 +15,7 @@ const Header= function(){
         STORE.categorySelected=null
         STORE.byPrice=false
         const { input } = e.target
+        DOMHandler.render(Loader)
         const searchProducts=  await ProductsFetcher.search(input.value)
         STORE.setProducts(searchProducts)
         STORE.inputText=input.value
