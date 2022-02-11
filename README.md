@@ -1,5 +1,5 @@
 # bsale_challenge_js
-SPA made with Vanilla JS(pure JS) to list products from this api: https://testbsale2021.herokuapp.com/api/products.
+SPA made with Vanilla JS(pure JS) to list products from this api: https://bsale-challenge2022.herokuapp.com/api/products .
 ## Demo-online
 
 **[DEMO](https://hopeful-johnson-e5e83f.netlify.app/)**
