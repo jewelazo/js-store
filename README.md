@@ -1,4 +1,4 @@
-# bsale_challenge_js
+# challenge_js
 SPA made with Vanilla JS(pure JS) to list products from this api: 
 
 **[Get Products](https://bsale-challenge2022.herokuapp.com/api/products)**
